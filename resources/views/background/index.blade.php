@@ -30,7 +30,7 @@
             <div class="navbar-header pull-left">
                 <a href="{{url('background/index')}}" class="navbar-brand">
                     <small>
-                        <img src="{{asset('static/background/images/logo.png')}}" alt="">
+                        <img src="{{asset('static/background/images/laravellogo.svg')}}" alt="">
                     </small>
                 </a>
             </div>

@@ -1,3 +1,31 @@
+## laravel练习--个人博客网站
+使用laravel和bootstrap搭建个人博客网站。主要包括以下功能：
+####后台管理员模块
+- 登入登出+注册改密+访问控制
+- 后台用户：增删改
+- 栏目分类：增删改
+- 文章：增删改（与栏目和tabs标签相关联），文章可以设置热门推荐
+- Tabs标签：增删改
+####前台展示页面模块
+- 首页展示（所有分类，热门标签，搜索）
+- 列表页展示（分类下的列表页和标签下的列表页相同）
+- 详情页
+-----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

@@ -1,4 +1,10 @@
 @extends('background.index')
+@section('文档')
+    class="open"
+@stop
+@section('文章')
+    class="open active"
+@stop
 @section('page-body')
     <div class="page-body">
 
@@ -13,6 +19,7 @@
                             <form class="form-horizontal" role="form" action="{{url('background/updateArticle')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="act" value="mod">
+                                <input type="hidden" name="id" value="{{$article->id}}">
                                 <div class="form-group">
                                     <label for="username" class="col-sm-2 control-label no-padding-right">标题</label>
                                     <div class="col-sm-6">
@@ -32,8 +39,14 @@
                                 <div class="form-group">
                                     <label for="group_id" class="col-sm-2 control-label no-padding-right">标签</label>
                                     <div class="col-sm-6">
-                                        <select name="group_id" style="width: 100%;">
-                                            <option selected="selected" value="奇闻">奇闻</option>
+                                        <select name="keywords[]" class="selectpicker form-control" multiple="multiple" style="width: 100%;">
+                                            @foreach($tags as $tag)
+                                                @if(in_array($tag->tagname,$keywords))
+                                                    <option  selected="selected" value="{{$tag->tagname}}">{{$tag->tagname}}</option>
+                                                @else
+                                                    <option  value="{{$tag->tagname}}">{{$tag->tagname}}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -41,8 +54,29 @@
                                 <div class="form-group">
                                     <label for="group_id" class="col-sm-2 control-label no-padding-right">栏目</label>
                                     <div class="col-sm-6">
-                                        <select name="group_id" style="width: 100%;">
-                                            <option selected="selected" value="奇闻">养生</option>
+                                        <select name="cateid" class="selectpicker form-control" style="width: 100%;">
+                                            @foreach($cates as $cate)
+                                                @if($cate->id == $article->cateid)
+                                                    <option selected="selected" value="{{$cate->id}}">{{$cate->catename}}</option>
+                                                @else
+                                                    <option value="{{$cate->id}}">{{$cate->catename}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="group_id" class="col-sm-2 control-label no-padding-right">是否设置热门推荐</label>
+                                    <div class="col-sm-6">
+                                        <select name="cateid" class="selectpicker" style="width: 100%;">
+                                            @if($article->state == 0)
+                                                <option  value="0" selected="selected" name="state">否</option>
+                                                <option  value="1" name="state">是</option>
+                                            @else
+                                                <option  value="0"  name="state">否</option>
+                                                <option  value="1" selected="selected" name="state">是</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -82,10 +116,10 @@
     <div class="page-breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <a href="#">系统</a>
+                <a href="{{url('background/index')}}">首页</a>
             </li>
             <li>
-                <a href="#">文章管理</a>
+                <a href="{{url('background/articleList')}}">文章管理</a>
             </li>
             <li class="active">修改文章</li>
         </ul>

@@ -26,9 +26,15 @@ Route::group(['middleware' => 'checkLogin'],function (){
     Route::any('background/index', 'BackgroundController@index')->name('index');
     Route::any('background/edit', 'BackgroundController@edit');
     Route::any('background/roleList', 'BackgroundController@roleList')->name('roleList');
-    Route::any('background/articleList', 'BackgroundController@articleList');
+    Route::any('background/articleList', 'BackgroundController@articleList')->name('articleList');
     Route::any('background/updateRole', 'BackgroundController@updateRole');
     Route::any('background/updateArticle', 'BackgroundController@updateArticle');
+    Route::any('background/tagList', 'BackgroundController@tagList')->name('tagList');
+    Route::any('background/updateTag', 'BackgroundController@updateTag');
+    Route::any('background/cateList', 'BackgroundController@cateList')->name('cateList');
+    Route::any('background/updateCate', 'BackgroundController@updateCate');
+    Route::any('background/modifyPassword', 'BackgroundController@modifyPassword');
+
 });
 Route::get('info','TestController@info');
 Auth::routes();

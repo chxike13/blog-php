@@ -1,4 +1,10 @@
 @extends('background.index')
+@section('人员')
+    class="open"
+@stop
+@section('人员管理')
+    class="open active"
+@stop
 @section('page-body')
     <div class="page-body">
 
@@ -55,10 +61,10 @@
     <div class="page-breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <a href="#">系统</a>
+                <a href="{{url('background/index')}}">首页</a>
             </li>
             <li>
-                <a href="#">用户管理</a>
+                <a href="{{url('background/roleList')}}">用户管理</a>
             </li>
             <li class="active">添加用户</li>
         </ul>

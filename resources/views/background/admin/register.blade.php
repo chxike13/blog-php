@@ -1,4 +1,4 @@
-@extends('login')
+@extends('background.admin.login')
 @section('title')
     用户注册
 @stop

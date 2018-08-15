@@ -1,8 +1,8 @@
 @extends('background.index')
-@section('人员')
+@section('文档')
     class="open"
 @stop
-@section('人员管理')
+@section('栏目')
     class="open active"
 @stop
 @section('page-body')
@@ -12,18 +12,18 @@
             <div class="col-lg-12 col-sm-12 col-xs-12">
                 <div class="widget">
                     <div class="widget-header bordered-bottom bordered-blue">
-                        <span class="widget-caption">修改用户</span>
+                        <span class="widget-caption">修改栏目</span>
                     </div>
                     <div class="widget-body">
                         <div id="horizontal-form">
-                            <form class="form-horizontal" role="form" action="{{url('background/updateRole')}}" method="post">
+                            <form class="form-horizontal" role="form" action="{{url('background/updateCate')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="act" value="mod">
-                                <input type="hidden" name="id" value="{{$id}}">
+                                <input type="hidden" name="id" value="{{$cates->id}}">
                                 <div class="form-group">
-                                    <label for="username" class="col-sm-2 control-label no-padding-right">用户名</label>
+                                    <label for="username" class="col-sm-2 control-label no-padding-right">栏目名</label>
                                     <div class="col-sm-6">
-                                        <input class="form-control" id="username" placeholder="用户名" name="username" value="{{$username}}" required="required" type="text">
+                                        <input class="form-control" id="catename" placeholder="标题" value="{{$cates->catename}}" name="catename" required="required" type="text">
                                     </div>
                                     <p class="help-block col-sm-4 red">* 必填</p>
                                 </div>
@@ -49,9 +49,9 @@
                 <a href="{{url('background/index')}}">首页</a>
             </li>
             <li>
-                <a href="{{url('background/roleList')}}">用户管理</a>
+                <a href="{{url('background/cateList')}}">栏目管理</a>
             </li>
-            <li class="active">修改用户</li>
+            <li class="active">修改栏目</li>
         </ul>
     </div>
 @stop

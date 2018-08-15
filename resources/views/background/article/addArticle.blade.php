@@ -1,4 +1,10 @@
 @extends('background.index')
+@section('文档')
+    class="open"
+@stop
+@section('文章')
+    class="open active"
+@stop
 @section('page-body')
 <div class="page-body">
 
@@ -32,8 +38,10 @@
                             <div class="form-group">
                                 <label for="group_id" class="col-sm-2 control-label no-padding-right">标签</label>
                                 <div class="col-sm-6">
-                                    <select name="group_id" style="width: 100%;">
-                                        <option selected="selected" value="奇闻">奇闻</option>
+                                    <select name="keywords[]" class="selectpicker form-control" multiple="multiple" style="width: 100%;">
+                                        @foreach($tags as $tag)
+                                        <option  value="{{$tag->tagname}}">{{$tag->tagname}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -41,8 +49,20 @@
                             <div class="form-group">
                                 <label for="group_id" class="col-sm-2 control-label no-padding-right">栏目</label>
                                 <div class="col-sm-6">
-                                    <select name="group_id" style="width: 100%;">
-                                        <option selected="selected" value="奇闻">养生</option>
+                                    <select name="cateid" class="selectpicker" style="width: 100%;">
+                                        @foreach($cates as $cate)
+                                        <option  value="{{$cate->id}}">{{$cate->catename}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="group_id" class="col-sm-2 control-label no-padding-right">是否设置热门推荐</label>
+                                <div class="col-sm-6">
+                                    <select name="state" class="selectpicker" style="width: 100%;">
+                                        <option  value="0" selected="selected" name="state">否</option>
+                                        <option  value="1" name="state">是</option>
                                     </select>
                                 </div>
                             </div>
@@ -82,10 +102,10 @@
 <div class="page-breadcrumbs">
     <ul class="breadcrumb">
         <li>
-            <a href="#">系统</a>
+            <a href="{{url('background/index')}}">首页</a>
         </li>
         <li>
-            <a href="#">文章管理</a>
+            <a href="{{url('background/articleList')}}">文章管理</a>
         </li>
         <li class="active">添加文章</li>
     </ul>

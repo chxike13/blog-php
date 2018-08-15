@@ -2,6 +2,12 @@
 @section('title')
     文章列表
 @stop
+@section('文档')
+    class="open"
+@stop
+@section('文章')
+    class="open active"
+@stop
 @section('page-body')
     <div class="page-body">
 
@@ -11,6 +17,7 @@
             <div class="col-lg-12 col-sm-12 col-xs-12">
                 <div class="widget">
                     <div class="widget-body">
+                        @include('background.message')
                         <div class="flip-scroll">
                             <table class="table table-bordered table-hover">
                                 <thead class="">
@@ -33,7 +40,7 @@
                                         <a href="{{url("background/updateArticle?act=mod&id={$article->id}")}}" class="btn btn-primary btn-sm shiny">
                                             <i class="fa fa-edit"></i> 编辑
                                         </a>
-                                        <a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/6.html')" class="btn btn-danger btn-sm shiny">
+                                        <a href="#" onClick="warning('确实要删除吗', '{{url("background/articleList?act=del&id={$article->id}")}}')" class="btn btn-danger btn-sm shiny">
                                             <i class="fa fa-trash-o"></i> 删除
                                         </a>
                                     </td>
@@ -55,7 +62,7 @@
     <div class="page-breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <a href="#">系统</a>
+                <a href="{{url('background/index')}}">首页</a>
             </li>
             <li class="active">文章列表</li>
         </ul>

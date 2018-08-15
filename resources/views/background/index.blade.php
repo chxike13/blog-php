@@ -18,6 +18,7 @@
     <link href="{{asset('static/background/style/demo.css')}}" rel="stylesheet">
     <link href="{{asset('static/background/style/typicons.css')}}" rel="stylesheet">
     <link href="{{asset('static/background/style/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('css/bootstrap-select.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -61,7 +62,7 @@
                                     </a>
                                 </li>
                                 <li class="dropdown-footer">
-                                    <a href="/admin/user/changePwd.html">
+                                    <a href="{{url('background/modifyPassword')}}">
                                         修改密码
                                     </a>
                                 </li>
@@ -96,34 +97,44 @@
             <!-- Sidebar Menu -->
             <ul class="nav sidebar-menu">
                 <!--Dashboard-->
-                <li>
+                <li @section('人员') @show>
                     <a href="#" class="menu-dropdown">
                         <i class="menu-icon fa fa-user"></i>
-                        <span class="menu-text">管理员</span>
+                        <span class="menu-text">人员</span>
                         <i class="menu-expand"></i>
                     </a>
                     <ul class="submenu">
-                        <li>
+                        <li @section('人员管理') @show>
                             <a href="{{url('background/roleList')}}">
-                                    <span class="menu-text">
-管理列表                                    </span>
+                                <span class="menu-text">人员管理</span>
                                 <i class="menu-expand"></i>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li>
+                <li @section('文档') @show>
                     <a href="#" class="menu-dropdown">
                         <i class="menu-icon fa fa-file-text"></i>
                         <span class="menu-text">文档</span>
                         <i class="menu-expand"></i>
                     </a>
                     <ul class="submenu">
-                        <li>
+                        <li @section('文章') @show>
                             <a href="{{url('background/articleList')}}">
-                                    <span class="menu-text">
-文章列表                                    </span>
+                                <span class="menu-text">文章管理</span>
+                                <i class="menu-expand"></i>
+                            </a>
+                        </li>
+                        <li @section('标签') @show>
+                            <a href="{{url('background/tagList')}}">
+                                <span class="menu-text">标签管理</span>
+                                <i class="menu-expand"></i>
+                            </a>
+                        </li>
+                        <li @section('栏目') @show>
+                            <a href="{{url('background/cateList')}}">
+                                <span class="menu-text">栏目管理</span>
                                 <i class="menu-expand"></i>
                             </a>
                         </li>
@@ -139,8 +150,7 @@
                     <ul class="submenu">
                         <li>
                             <a href="{{url('background/edit')}}">
-                                    <span class="menu-text">
-配置                                   </span>
+                                <span class="menu-text">配置</span>
                                 <i class="menu-expand"></i>
                             </a>
                         </li>
@@ -185,6 +195,7 @@
 <!--Basic Scripts-->
 <script src="{{asset('static/background/style/jquery_002.js')}}"></script>
 <script src="{{asset('static/background/style/bootstrap.js')}}"></script>
+<script src="{{asset('js/bootstrap-select.js')}}"></script>
 <script src="{{asset('static/background/style/jquery.js')}}"></script>
 <!--Beyond Scripts-->
 <script src="{{asset('static/background/style/beyond.js')}}"></script>

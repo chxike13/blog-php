@@ -140,24 +140,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li>
-                    <a href="#" class="menu-dropdown">
-                        <i class="menu-icon fa fa-gear"></i>
-                        <span class="menu-text">系统</span>
-                        <i class="menu-expand"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="{{url('background/edit')}}">
-                                <span class="menu-text">配置</span>
-                                <i class="menu-expand"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
             </ul>
             <!-- /Sidebar Menu -->
         </div>

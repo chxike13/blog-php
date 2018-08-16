@@ -36,6 +36,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label no-padding-right">插图</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="pic" placeholder="作者" name="pic" required="required" type="text">
+                                </div>
+                                <p class="help-block col-sm-4 red">* 必填</p>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="group_id" class="col-sm-2 control-label no-padding-right">标签</label>
                                 <div class="col-sm-6">
                                     <select name="keywords[]" class="selectpicker form-control" multiple="multiple" style="width: 100%;">

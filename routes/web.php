@@ -36,6 +36,9 @@ Route::group(['middleware' => 'checkLogin'],function (){
     Route::any('background/modifyPassword', 'BackgroundController@modifyPassword');
 
 });
+Route::any('foreground/index','ForegroundController@index');
+Route::any('foreground/getContent','ForegroundController@getContent');
+Route::any('foreground/getPosition','ForegroundController@getPosition');
 Route::get('info','TestController@info');
 Auth::routes();
 

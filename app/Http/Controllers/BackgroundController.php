@@ -173,6 +173,7 @@ class BackgroundController extends Controller
             $act = $request->input('act');
             $id = $request->input('id');
             $state = $request->input('state');
+            $pic = $request->input('pic');
             $keywordsStr = implode(",",$keywords);
             switch ($act){
                 case 'add':{
@@ -184,6 +185,7 @@ class BackgroundController extends Controller
                     $article->desc = $desc;
                     $article->content = $content;
                     $article->state = $state;
+                    $article->pic = $pic;
                     $article->save();
                     return redirect(route('articleList'))->with('success','添加成功！');
                 }break;

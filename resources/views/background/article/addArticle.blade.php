@@ -1,4 +1,7 @@
 @extends('background.index')
+@section('title')
+    添加文章
+@stop
 @section('文档')
     class="open"
 @stop
@@ -16,7 +19,7 @@
                 </div>
                 <div class="widget-body">
                     <div id="horizontal-form">
-                        <form class="form-horizontal" role="form" action="{{url('background/updateArticle')}}" method="post">
+                        <form class="form-horizontal" role="form" action="{{url('background/updateArticle')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="act" value="add">
                             <div class="form-group">
@@ -38,7 +41,7 @@
                             <div class="form-group">
                                 <label for="username" class="col-sm-2 control-label no-padding-right">插图</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" id="pic" placeholder="作者" name="pic" required="required" type="text">
+                                    <input class="form-control" id="pic" placeholder="插图" name="img" required="required" type="file">
                                 </div>
                                 <p class="help-block col-sm-4 red">* 必填</p>
                             </div>
@@ -83,10 +86,17 @@
                                 <p class="help-block col-sm-4 red">* 必填</p>
                             </div>
 
+                            <div class="form-group" style="display: none">
+                                <label for="username" class="col-sm-2 control-label no-padding-right">文章内容</label>
+                                <div class="col-sm-6" >
+                                    <textarea name="content" id="content" cols="105" rows="5" ></textarea>
+                                </div>
+                                <p class="help-block col-sm-4 red">* 必填</p>
+                            </div>
+
                             <div class="form-group">
                                 <label for="username" class="col-sm-2 control-label no-padding-right">文章内容</label>
-                                <div class="col-sm-6">
-                                    <textarea name="content" id="content" cols="105" rows="15" ></textarea>
+                                <div class="col-sm-6" id="contentEditor">
                                 </div>
                                 <p class="help-block col-sm-4 red">* 必填</p>
                             </div>
@@ -94,7 +104,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">保存信息</button>
+                                    <button type="submit" id="save" class="btn btn-default">保存信息</button>
                                 </div>
                             </div>
                         </form>

@@ -34,6 +34,7 @@ Route::group(['middleware' => 'checkLogin'],function (){
     Route::any('background/cateList', 'BackgroundController@cateList')->name('cateList');
     Route::any('background/updateCate', 'BackgroundController@updateCate');
     Route::any('background/modifyPassword', 'BackgroundController@modifyPassword');
+    Route::any('background/uploadImg', 'BackgroundController@uploadImg');
 
 });
 Route::any('foreground/index','ForegroundController@index');

@@ -26,6 +26,7 @@
                                     <th class="text-center">作者</th>
                                     <th class="text-center">关键字</th>
                                     <th class="text-center">栏目</th>
+                                    <th class="text-center">点击量</th>
                                     <th class="text-center">操作</th>
                                 </tr>
                                 </thead>
@@ -36,6 +37,7 @@
                                     <td align="center">{{$article->author}}</td>
                                     <td align="center">{{$article->keywords}}</td>
                                     <td align="center">{{$article->cateid}}</td>
+                                    <td align="center">{{$article->click}}</td>
                                     <td align="center">
                                         <a href="{{url("background/updateArticle?act=mod&id={$article->id}")}}" class="btn btn-primary btn-sm shiny">
                                             <i class="fa fa-edit"></i> 编辑

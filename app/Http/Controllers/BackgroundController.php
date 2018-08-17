@@ -14,6 +14,7 @@ use App\TpArticle;
 use App\TpCate;
 use App\TpTags;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class BackgroundController extends Controller
@@ -56,6 +57,8 @@ class BackgroundController extends Controller
                 case 'del':{
                     $articles = TpArticle::find($request->input('id'));
                     if ($articles){
+                        $filename = $articles->pic;
+                        $boll = \Storage::disk('public')->delete($filename);
                         $articles->delete();
                         return redirect('background/articleList')->with('success','删除成功!');
                     }
@@ -164,43 +167,52 @@ class BackgroundController extends Controller
     {
         if ($request->isMethod('POST'))
         {
-            $title = $request->input('title');
-            $author = $request->input('author');
-            $keywords = $request->input('keywords');
-            $cate = $request->input('cateid');
-            $desc = $request->input('desc');
-            $content = $request->input('content');
-            $act = $request->input('act');
-            $id = $request->input('id');
-            $state = $request->input('state');
-            $pic = $request->input('pic');
-            $keywordsStr = implode(",",$keywords);
-            switch ($act){
-                case 'add':{
-                    $article = new TpArticle();
-                    $article->title = $title;
-                    $article->author = $author;
-                    $article->keywords = $keywordsStr;
-                    $article->cateid = $cate;
-                    $article->desc = $desc;
-                    $article->content = $content;
-                    $article->state = $state;
-                    $article->pic = $pic;
-                    $article->save();
-                    return redirect(route('articleList'))->with('success','添加成功！');
-                }break;
-                case 'mod':{
-                    $article = TpArticle::find($id);
-                    $article->title = $title;
-                    $article->author = $author;
-                    $article->keywords = $keywordsStr;
-                    $article->cateid = $cate;
-                    $article->desc = $desc;
-                    $article->content = $content;
-                    $article->state = $state;
-                    $article->save();
-                    return redirect(route('articleList'))->with('success','修改成功！');
-                }break;
+            $file = $request->file('img');
+            if (!$file->isValid()){
+                return back()->with('error','图片上传失败！');
+            }else
+            {
+                $fileName = time().'-'.$file->getClientOriginalName();
+                $filePath = $file->getRealPath();
+                \Storage::disk('public')->put($fileName,file_get_contents($filePath));
+                $title = $request->input('title');
+                $author = $request->input('author');
+                $keywords = $request->input('keywords');
+                $cate = $request->input('cateid');
+                $desc = $request->input('desc');
+                $content = $request->input('content');
+                $act = $request->input('act');
+                $id = $request->input('id');
+                $state = $request->input('state');
+                $keywordsStr = implode(",",$keywords);
+                switch ($act){
+                    case 'add':{
+                        $article = new TpArticle();
+                        $article->title = $title;
+                        $article->author = $author;
+                        $article->keywords = $keywordsStr;
+                        $article->cateid = $cate;
+                        $article->desc = $desc;
+                        $article->content = $content;
+                        $article->state = $state;
+                        $article->pic = $fileName;
+                        $article->save();
+                        return redirect(route('articleList'))->with('success','添加成功！');
+                    }break;
+                    case 'mod':{
+                        $article = TpArticle::find($id);
+                        $article->title = $title;
+                        $article->author = $author;
+                        $article->keywords = $keywordsStr;
+                        $article->cateid = $cate;
+                        $article->desc = $desc;
+                        $article->content = $content;
+                        $article->state = $state;
+                        $article->save();
+                        return redirect(route('articleList'))->with('success','修改成功！');
+                    }break;
+                }
+
             }
 
         }else{
@@ -355,6 +367,18 @@ class BackgroundController extends Controller
             }
         }
         return view('background.admin.modifyPassword');
+    }
+    public function uploadImg(Request $request)
+    {
+        $file = $request->file('img');
+        //判断文件夹是否已存在
+        //判断文件是否有效
+        if($file->isValid()) {
+            $fileName = time().'-'.$file->getClientOriginalName();
+            \Storage::disk('public')->put($fileName,file_get_contents($file));
+            return redirect()->with('success','上传成功！');
+        }
+        return view('background.index')->with('success','上传失败！');
     }
 
 }

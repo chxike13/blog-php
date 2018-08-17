@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title','首页')</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -181,7 +181,26 @@
 <script src="{{asset('static/background/style/jquery.js')}}"></script>
 <!--Beyond Scripts-->
 <script src="{{asset('static/background/style/beyond.js')}}"></script>
-
+<script src="{{asset('static/background/style/wangEditor.min.js')}}"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#contentEditor');
+    // 或者 var editor = new E( document.getElementById('#editor') )
+    var $text1 = $('#content');
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        $text1.val(html)
+    };
+    editor.customConfig.uploadImgServer = '{{url('background/uploadImg')}}';
+    editor.customConfig.uploadFileName = '图片';
+    editor.customConfig.debug=true;
+    {{--editor.config.uploadParams = {--}}
+        {{--token: '{{csrf_token()}}'--}}
+    {{--};--}}
+    editor.create();
+    // 初始化 textarea 的值
+    $text1.val(editor.txt.html());
+</script>
 
 </body>
 </html>

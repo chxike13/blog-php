@@ -89,10 +89,18 @@
                                     <p class="help-block col-sm-4 red">* 必填</p>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" style="display: none">
                                     <label for="username" class="col-sm-2 control-label no-padding-right">文章内容</label>
                                     <div class="col-sm-6">
                                         <textarea name="content" id="content" cols="105" rows="15">{{$article->content}}</textarea>
+                                    </div>
+                                    <p class="help-block col-sm-4 red">* 必填</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-2 control-label no-padding-right">文章内容</label>
+                                    <div class="col-sm-6" id="contentEditor">
+                                        {!! $article->content !!}
                                     </div>
                                     <p class="help-block col-sm-4 red">* 必填</p>
                                 </div>
